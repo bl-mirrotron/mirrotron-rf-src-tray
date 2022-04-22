@@ -1,7 +1,7 @@
-# mirrotron-llrf-scope-tray
+# mirrotron-llrf-dsp-tray
 ## need to add .env file with the following
-MQTTSUBSCRIBE=mirrotron/llrf-scope/01/setting/#  
-MQTTCLIENTID=mirrotron-llrf-scope-tray-01  
+MQTTSUBSCRIBE=mirrotron/llrf-dsp/01/setting/#  
+MQTTCLIENTID=mirrotron-llrf-dsp-tray-01  
 MQTTSERVERIP=something.cloudmqtt.com  
 MQTTUSERNAME=xxxx  
 MQTTPASSWORD=yyyy  
