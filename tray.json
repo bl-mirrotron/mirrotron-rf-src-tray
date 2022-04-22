@@ -1,9 +1,49 @@
 {
-  "type": "llrf-scope",
+  "type": "llrf-dsp",
   "name": "01",
   "arcPeriod": 60000,
   "timeStamp": 1646408271939,
-  "led1": {
+  "countClr": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "unit",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": -1,
+        "low": -1,
+        "high": 2,
+        "hihi": 2
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": 0
+  },
+  "ddsResync": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "unit",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": -1,
+        "low": -1,
+        "high": 2,
+        "hihi": 2
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": 0
+  },
+  "on0": {
     "action": "setting",
     "type": "scalar",
     "unit": "unit",
@@ -23,7 +63,7 @@
     },
     "value": 1
   },
-  "led2": {
+  "on1": {
     "action": "setting",
     "type": "scalar",
     "unit": "unit",
@@ -43,16 +83,15 @@
     },
     "value": 1
   },
-  "led3": {
+  "countInc": {
     "action": "setting",
     "type": "scalar",
-    "value": 1,
     "unit": "unit",
     "alarm": {
       "value": 0,
       "limits": {
-        "lolo": -1,
-        "low": -1,
+        "lolo": 0,
+        "low": 0,
         "high": 2,
         "hihi": 2
       },
@@ -61,26 +100,187 @@
         "number": "",
         "time": 0
       }
-    }
+    },
+    "value": 1
   },
-  "nonModbusSetting": {
+  "countMax": {
     "action": "setting",
     "type": "scalar",
-    "value": 0,
-    "unit": "unit",
+    "unit": "uS",
     "alarm": {
       "value": 0,
       "limits": {
-        "lolo": -1,
-        "low": -1,
-        "high": 2,
-        "hihi": 2
+        "lolo": 1000,
+        "low": 2000,
+        "high": 15000000,
+        "hihi": 16000000
       },
       "notify": {
         "name": "",
         "number": "",
         "time": 0
       }
-    }
+    },
+    "value": 100000
+  },
+  "phaseInc": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "MHz",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": 180,
+        "low": 190,
+        "high": 210,
+        "hihi": 220
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": 200
+  },
+  "phaseOff": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "unit",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": -1,
+        "low": -1,
+        "high": 1,
+        "hihi": 1
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": 0
+  },
+  "rfAmpHi": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "unit",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": -0.4,
+        "low": -0.3,
+        "high": 0.3,
+        "hihi": 0.4
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": 0.25
+  },
+  "rfAmpLow": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "unit",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": -0.4,
+        "low": -0.3,
+        "high": 0.3,
+        "hihi": 0.4
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": -0.01
+  },
+  "start0": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "uS",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": 1,
+        "low": 2,
+        "high": 15000000,
+        "hihi": 16000000
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": 10
+  },
+  "start1": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "uS",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": 1,
+        "low": 2,
+        "high": 15000000,
+        "hihi": 16000000
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": 110
+  },
+  "stop0": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "uS",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": 1,
+        "low": 2,
+        "high": 15000000,
+        "hihi": 16000000
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": 210
+  },
+  "stop1": {
+    "action": "setting",
+    "type": "scalar",
+    "unit": "uS",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": 1,
+        "low": 2,
+        "high": 15000000,
+        "hihi": 16000000
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    },
+    "value": 310
   }
 }
