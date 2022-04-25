@@ -3,6 +3,26 @@
   "name": "01",
   "arcPeriod": 60000,
   "timeStamp": 1646408271939,
+  "watchdog": {
+    "action": "reading",
+    "type": "scalar",
+    "value": 85,
+    "unit": "unit",
+    "alarm": {
+      "value": 0,
+      "limits": {
+        "lolo": -1,
+        "low": 0,
+        "high": 40000,
+        "hihi": 50000
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    }
+  },
   "countClr": {
     "action": "setting",
     "type": "scalar",
@@ -121,7 +141,7 @@
         "time": 0
       }
     },
-    "value": 100000
+    "value": 1000000
   },
   "phaseInc": {
     "action": "setting",
@@ -221,7 +241,7 @@
         "time": 0
       }
     },
-    "value": 10
+    "value": 1000
   },
   "start1": {
     "action": "setting",
@@ -241,7 +261,7 @@
         "time": 0
       }
     },
-    "value": 110
+    "value": 500
   },
   "stop0": {
     "action": "setting",
@@ -261,7 +281,7 @@
         "time": 0
       }
     },
-    "value": 210
+    "value": 2000
   },
   "stop1": {
     "action": "setting",
@@ -281,6 +301,6 @@
         "time": 0
       }
     },
-    "value": 310
+    "value": 2500
   }
 }

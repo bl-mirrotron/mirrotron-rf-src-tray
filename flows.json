@@ -2,7 +2,7 @@
     {
         "id": "85e21fcb925ef32f",
         "type": "tab",
-        "label": "blinky-bus-tray",
+        "label": "mirrotron-llrf-dsp-tray",
         "disabled": false,
         "info": ""
     },
@@ -125,7 +125,7 @@
         "type": "function",
         "z": "85e21fcb925ef32f",
         "name": "Save tray config in Memory",
-        "func": "global.set('settingInProgress', true);\nglobal.set('tray', msg.payload);\nreturn msg;",
+        "func": "msg.payload.watchdog.value = 0;\nglobal.set('settingInProgress', true);\nglobal.set('tray', msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1283,5 +1283,53 @@
         "x": 1135,
         "y": 60,
         "wires": []
+    },
+    {
+        "id": "a5ba61bf663ce32e",
+        "type": "inject",
+        "z": "85e21fcb925ef32f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1030,
+        "y": 260,
+        "wires": [
+            [
+                "c4c80b41c4f5b19d"
+            ]
+        ]
+    },
+    {
+        "id": "c4c80b41c4f5b19d",
+        "type": "function",
+        "z": "85e21fcb925ef32f",
+        "name": "Increment watchdog",
+        "func": "var tray = global.get('tray');\ntray.watchdog.value = tray.watchdog.value + 1;\nif ( tray.watchdog.value > 32760 ) tray.watchdog.value = 0;\nmsg.payload = true\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 260,
+        "wires": [
+            [
+                "f75b9887786b11c4"
+            ]
+        ]
     }
 ]
