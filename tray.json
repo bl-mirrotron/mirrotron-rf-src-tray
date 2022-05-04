@@ -1,12 +1,12 @@
 {
-  "type": "llrf-dsp",
+  "type": "rf-src",
   "name": "01",
   "arcPeriod": 60000,
   "timeStamp": 1646408271939,
   "watchdog": {
     "action": "reading",
     "type": "scalar",
-    "value": 85,
+    "value": 19201,
     "unit": "unit",
     "alarm": {
       "value": 0,
@@ -23,7 +23,7 @@
       }
     }
   },
-  "countClr": {
+  "clr": {
     "action": "setting",
     "type": "scalar",
     "unit": "unit",
@@ -43,7 +43,7 @@
     },
     "value": 0
   },
-  "ddsResync": {
+  "resetDDS": {
     "action": "setting",
     "type": "scalar",
     "unit": "unit",
@@ -63,17 +63,17 @@
     },
     "value": 0
   },
-  "on0": {
+  "fbFiltShift": {
     "action": "setting",
     "type": "scalar",
     "unit": "unit",
     "alarm": {
       "value": 0,
       "limits": {
-        "lolo": -1,
-        "low": -1,
-        "high": 2,
-        "hihi": 2
+        "lolo": 11,
+        "low": 12,
+        "high": 15,
+        "hihi": 16
       },
       "notify": {
         "name": "",
@@ -81,19 +81,19 @@
         "time": 0
       }
     },
-    "value": 1
+    "value": 13
   },
-  "on1": {
+  "fbGainShift": {
     "action": "setting",
     "type": "scalar",
     "unit": "unit",
     "alarm": {
       "value": 0,
       "limits": {
-        "lolo": -1,
-        "low": -1,
-        "high": 2,
-        "hihi": 2
+        "lolo": 3,
+        "low": 4,
+        "high": 6,
+        "hihi": 7
       },
       "notify": {
         "name": "",
@@ -101,47 +101,7 @@
         "time": 0
       }
     },
-    "value": 1
-  },
-  "countInc": {
-    "action": "setting",
-    "type": "scalar",
-    "unit": "unit",
-    "alarm": {
-      "value": 0,
-      "limits": {
-        "lolo": 0,
-        "low": 0,
-        "high": 2,
-        "hihi": 2
-      },
-      "notify": {
-        "name": "",
-        "number": "",
-        "time": 0
-      }
-    },
-    "value": 1
-  },
-  "countMax": {
-    "action": "setting",
-    "type": "scalar",
-    "unit": "uS",
-    "alarm": {
-      "value": 0,
-      "limits": {
-        "lolo": 1000,
-        "low": 2000,
-        "high": 15000000,
-        "hihi": 16000000
-      },
-      "notify": {
-        "name": "",
-        "number": "",
-        "time": 0
-      }
-    },
-    "value": 1000000
+    "value": 5
   },
   "phaseInc": {
     "action": "setting",
@@ -222,85 +182,5 @@
       }
     },
     "value": -0.01
-  },
-  "start0": {
-    "action": "setting",
-    "type": "scalar",
-    "unit": "uS",
-    "alarm": {
-      "value": 0,
-      "limits": {
-        "lolo": 1,
-        "low": 2,
-        "high": 15000000,
-        "hihi": 16000000
-      },
-      "notify": {
-        "name": "",
-        "number": "",
-        "time": 0
-      }
-    },
-    "value": 1000
-  },
-  "start1": {
-    "action": "setting",
-    "type": "scalar",
-    "unit": "uS",
-    "alarm": {
-      "value": 0,
-      "limits": {
-        "lolo": 1,
-        "low": 2,
-        "high": 15000000,
-        "hihi": 16000000
-      },
-      "notify": {
-        "name": "",
-        "number": "",
-        "time": 0
-      }
-    },
-    "value": 500
-  },
-  "stop0": {
-    "action": "setting",
-    "type": "scalar",
-    "unit": "uS",
-    "alarm": {
-      "value": 0,
-      "limits": {
-        "lolo": 1,
-        "low": 2,
-        "high": 15000000,
-        "hihi": 16000000
-      },
-      "notify": {
-        "name": "",
-        "number": "",
-        "time": 0
-      }
-    },
-    "value": 2000
-  },
-  "stop1": {
-    "action": "setting",
-    "type": "scalar",
-    "unit": "uS",
-    "alarm": {
-      "value": 0,
-      "limits": {
-        "lolo": 1,
-        "low": 2,
-        "high": 15000000,
-        "hihi": 16000000
-      },
-      "notify": {
-        "name": "",
-        "number": "",
-        "time": 0
-      }
-    },
-    "value": 2500
   }
 }
