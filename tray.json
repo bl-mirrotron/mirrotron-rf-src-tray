@@ -6,8 +6,8 @@
   "watchdog": {
     "action": "reading",
     "type": "scalar",
-    "value": 19201,
-    "unit": "unit",
+    "value": 1722,
+    "unit": "",
     "alarm": {
       "value": 0,
       "limits": {
@@ -26,7 +26,7 @@
   "clr": {
     "action": "setting",
     "type": "scalar",
-    "unit": "unit",
+    "unit": "",
     "alarm": {
       "value": 0,
       "limits": {
@@ -46,7 +46,7 @@
   "resetDDS": {
     "action": "setting",
     "type": "scalar",
-    "unit": "unit",
+    "unit": "",
     "alarm": {
       "value": 0,
       "limits": {
@@ -66,7 +66,7 @@
   "fbFiltShift": {
     "action": "setting",
     "type": "scalar",
-    "unit": "unit",
+    "unit": "",
     "alarm": {
       "value": 0,
       "limits": {
@@ -86,7 +86,7 @@
   "fbGainShift": {
     "action": "setting",
     "type": "scalar",
-    "unit": "unit",
+    "unit": "",
     "alarm": {
       "value": 0,
       "limits": {
