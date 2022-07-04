@@ -1,10 +1,43 @@
 [
     {
+        "id": "b06cee2ed8259749",
+        "type": "tab",
+        "label": "machine permit",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "85e21fcb925ef32f",
         "type": "tab",
         "label": "mirrotron-rf-src-tray",
         "disabled": false,
         "info": ""
+    },
+    {
+        "id": "79250bf3.365cc4",
+        "type": "mqtt-broker",
+        "name": "MQTT Broker",
+        "broker": "$(MQTTSERVERIP)",
+        "port": "1883",
+        "clientid": "$(MQTTCLIENTID)",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
     },
     {
         "id": "6ad7c930.1a06b8",
@@ -96,36 +129,168 @@
         }
     },
     {
-        "id": "79250bf3.365cc4",
-        "type": "mqtt-broker",
-        "name": "MQTT Broker",
-        "broker": "$(MQTTSERVERIP)",
-        "port": "1883",
-        "clientid": "$(MQTTCLIENTID)",
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "sessionExpiry": ""
+        "id": "34e006cc520bd9c6",
+        "type": "mqtt in",
+        "z": "b06cee2ed8259749",
+        "name": "",
+        "topic": "mirrotron/machine-permit/01/reading",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "79250bf3.365cc4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 120,
+        "wires": [
+            [
+                "02788e2429fe9895"
+            ]
+        ]
+    },
+    {
+        "id": "02788e2429fe9895",
+        "type": "json",
+        "z": "b06cee2ed8259749",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 430,
+        "y": 120,
+        "wires": [
+            [
+                "361add039165c06f"
+            ]
+        ]
+    },
+    {
+        "id": "e78668c63db80a47",
+        "type": "inject",
+        "z": "b06cee2ed8259749",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "61c38b0ddb2f7f85"
+            ]
+        ]
+    },
+    {
+        "id": "61c38b0ddb2f7f85",
+        "type": "function",
+        "z": "b06cee2ed8259749",
+        "name": "Init Watchdog Watch",
+        "func": "flow.set('staleIntervalmS',12000);\nlet  llrfPermit = \n{\n    permit          :   0, \n    watchdog        :   -1,\n    watchdogChange  :   false,\n    timeStamp       :   0,\n}\nglobal.set('llrfPermit',llrfPermit);\nreturn msg;",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "bb151754c506253f",
+        "type": "inject",
+        "z": "b06cee2ed8259749",
+        "name": "1 Hz",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "checkForStaleWatchdog",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "bd6f804df3d72596"
+            ]
+        ]
+    },
+    {
+        "id": "bd6f804df3d72596",
+        "type": "function",
+        "z": "b06cee2ed8259749",
+        "name": "Scan Watchdog",
+        "func": "let staleIntervalmS = flow.get('staleIntervalmS');\nlet llrfPermit = global.get('llrfPermit');\nif ((msg.payload - llrfPermit.timeStamp) > staleIntervalmS) llrfPermit.watchdogChange = false;\nif (!llrfPermit.watchdogChange || (llrfPermit.permit == 0))\n{\n    if (!global.get('settingInProgress'))\n    {\n        let tray = global.get('tray'); \n        if (tray.resetDDS.value == 0)\n        {\n            tray.resetDDS.value = 1;\n            return {topic:'setting', payload:true};\n        }\n    }\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 220,
+        "wires": [
+            [
+                "56810d9f9755ecc8"
+            ]
+        ]
+    },
+    {
+        "id": "361add039165c06f",
+        "type": "function",
+        "z": "b06cee2ed8259749",
+        "name": "Scan machine permit",
+        "func": "let llrfPermit = global.get('llrfPermit');\nif (llrfPermit == null) return null;\nif (llrfPermit.watchdog != msg.payload.watchdog.value)\n{\n   llrfPermit.watchdog        =   msg.payload.watchdog.value;\n   llrfPermit.watchdogChange  =   true;\n   llrfPermit.permit          =   msg.payload.permit.value;\n   llrfPermit.timeStamp       =   new Date().getTime();\n}\n\nreturn null;",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "56810d9f9755ecc8",
+        "type": "link out",
+        "z": "b06cee2ed8259749",
+        "name": "Scan Watchdog out",
+        "mode": "link",
+        "links": [
+            "e9a01e5bc2f140ef"
+        ],
+        "x": 395,
+        "y": 220,
+        "wires": []
     },
     {
         "id": "30f384ea.cf21fc",
         "type": "function",
         "z": "85e21fcb925ef32f",
         "name": "Save tray config in Memory",
-        "func": "msg.payload.watchdog.value = 0;\nglobal.set('settingInProgress', true);\nglobal.set('tray', msg.payload);\nreturn msg;",
+        "func": "msg.payload.watchdog.value = 0;\nmsg.payload.resetDDS.value = 1;\nglobal.set('settingInProgress', true);\nglobal.set('tray', msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -542,11 +707,11 @@
             "396e4a58f43bbdef",
             "dc7936fb55cf6c52"
         ],
-        "x": 955,
+        "x": 535,
         "y": 340,
         "wires": [
             [
-                "f75b9887786b11c4"
+                "48467ee1b54e0d4c"
             ]
         ]
     },
@@ -1057,7 +1222,7 @@
         "type": "function",
         "z": "85e21fcb925ef32f",
         "name": "Create Setting",
-        "func": "var tray = global.get('tray');\ntray[msg.payload.cube].value = msg.payload.value;\nreturn {topic:'setting', payload:true};",
+        "func": "var tray = global.get('tray');\nif (msg.payload.cube == 'resetDDS')\n{\n    let llrfPermit = global.get('llrfPermit');\n    if (!llrfPermit.watchdogChange || (llrfPermit.permit == 0))\n    {\n        return null;\n    }\n}\ntray[msg.payload.cube].value = msg.payload.value;\nreturn {topic:'setting', payload:true};",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1224,10 +1389,9 @@
         "z": "85e21fcb925ef32f",
         "name": "Canvas Settings In",
         "links": [
-            "756ba0a6f071c881",
-            "56eb9898c37a8173",
-            "b018aa03d43d5655",
-            "93758a55568a2f76"
+            "56810d9f9755ecc8",
+            "93758a55568a2f76",
+            "b018aa03d43d5655"
         ],
         "x": 55,
         "y": 660,
@@ -1305,8 +1469,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1030,
-        "y": 260,
+        "x": 270,
+        "y": 280,
         "wires": [
             [
                 "c4c80b41c4f5b19d"
@@ -1324,11 +1488,49 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 260,
+        "x": 460,
+        "y": 280,
+        "wires": [
+            [
+                "48467ee1b54e0d4c"
+            ]
+        ]
+    },
+    {
+        "id": "99fbe8135d0ce161",
+        "type": "function",
+        "z": "85e21fcb925ef32f",
+        "name": "Readings Alarm Scan",
+        "func": "var newData = msg.payload;\nvar tray = global.get('tray');\nvar alarmFlagReading = scalarAlarmScan(tray, 'reading');\nvar alarmFlagSetting = scalarAlarmScan(tray, 'setting');\nreturn { topic: 'newData', payload: true};\n\nfunction getActionArray(tray, type, actionType)\n{\n    var actionArray = [];\n    var keys = Object.keys(tray);\n    for (var ii = 0; ii < keys.length; ++ii)\n    {\n        if (tray[keys[ii]].hasOwnProperty('type'))\n        {\n            if (tray[keys[ii]].type == type)\n            {\n                if (tray[keys[ii]].action == actionType)\n                {\n                    actionArray.push(tray[keys[ii]]);\n                }\n            }\n        }\n    }\n    return actionArray;\n}\nfunction scalarAlarmScan(tray, actionType)\n{\n    var alarmFlag = false;\n    var actionArray = getActionArray(tray, 'scalar', actionType);\n    if (actionArray.length > 0)\n    {\n        for (var ii = 0; ii < actionArray.length; ++ii)\n        {\n            let oldAlarmValue = actionArray[ii].alarm.value;\n            actionArray[ii].alarm.value = 0;\n            if (!isNaN(actionArray[ii].value))\n            {\n                if (actionArray[ii].value <= actionArray[ii].alarm.limits.low)  actionArray[ii].alarm.value = 1;\n                if (actionArray[ii].value <= actionArray[ii].alarm.limits.lolo) actionArray[ii].alarm.value = 3;\n                if (actionArray[ii].value >= actionArray[ii].alarm.limits.high) actionArray[ii].alarm.value = 2;\n                if (actionArray[ii].value >= actionArray[ii].alarm.limits.hihi) actionArray[ii].alarm.value = 4;\n                if (actionArray[ii].alarm.value != oldAlarmValue) alarmFlag = true;\n            }\n        }\n    }\n    return alarmFlag;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set('lastAlarm', -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 340,
         "wires": [
             [
                 "f75b9887786b11c4"
+            ]
+        ]
+    },
+    {
+        "id": "48467ee1b54e0d4c",
+        "type": "function",
+        "z": "85e21fcb925ef32f",
+        "name": "Check for Permit",
+        "func": "var tray = global.get('tray');\ntray.permit.value = 1;\nif (scalarAlarmScan(tray, 'reading')) tray.permit.value = 0;\nif (scalarAlarmScan(tray, 'setting')) tray.permit.value = 0;\n\nreturn msg;\nfunction getActionArray(tray, type, actionType)\n{\n    var actionArray = [];\n    var keys = Object.keys(tray);\n    for (var ii = 0; ii < keys.length; ++ii)\n    {\n        if (tray[keys[ii]].hasOwnProperty('type'))\n        {\n            if (tray[keys[ii]].type == type)\n            {\n                if (tray[keys[ii]].action == actionType)\n                {\n                    actionArray.push(tray[keys[ii]]);\n                }\n            }\n        }\n    }\n    return actionArray;\n}\nfunction scalarAlarmScan(tray, actionType)\n{\n    var alarmFlag = false;\n    var actionArray = getActionArray(tray, 'scalar', actionType);\n    if (actionArray.length > 0)\n    {\n        for (var ii = 0; ii < actionArray.length; ++ii)\n        {\n            actionArray[ii].alarm.value = 0;\n            if (!isNaN(actionArray[ii].value))\n            {\n                if (actionArray[ii].value <= actionArray[ii].alarm.limits.low)  actionArray[ii].alarm.value = 1;\n                if (actionArray[ii].value <= actionArray[ii].alarm.limits.lolo) actionArray[ii].alarm.value = 3;\n                if (actionArray[ii].value >= actionArray[ii].alarm.limits.high) actionArray[ii].alarm.value = 2;\n                if (actionArray[ii].value >= actionArray[ii].alarm.limits.hihi) actionArray[ii].alarm.value = 4;\n                if (actionArray[ii].alarm.value > 2) alarmFlag = true;\n            }\n        }\n    }\n    return alarmFlag;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 340,
+        "wires": [
+            [
+                "99fbe8135d0ce161"
             ]
         ]
     }

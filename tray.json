@@ -6,7 +6,7 @@
   "watchdog": {
     "action": "reading",
     "type": "scalar",
-    "value": 1722,
+    "value": 30,
     "unit": "",
     "alarm": {
       "value": 0,
@@ -70,10 +70,10 @@
     "alarm": {
       "value": 0,
       "limits": {
-        "lolo": 11,
-        "low": 12,
-        "high": 15,
-        "hihi": 16
+        "lolo": 16,
+        "low": 17,
+        "high": 19,
+        "hihi": 20
       },
       "notify": {
         "name": "",
@@ -81,19 +81,19 @@
         "time": 0
       }
     },
-    "value": 13
+    "value": 18
   },
   "fbGainShift": {
     "action": "setting",
     "type": "scalar",
     "unit": "",
     "alarm": {
-      "value": 0,
+      "value": 4,
       "limits": {
-        "lolo": 3,
-        "low": 4,
-        "high": 6,
-        "hihi": 7
+        "lolo": 10,
+        "low": 11,
+        "high": 13,
+        "hihi": 14
       },
       "notify": {
         "name": "",
@@ -101,7 +101,7 @@
         "time": 0
       }
     },
-    "value": 5
+    "value": 12
   },
   "phaseInc": {
     "action": "setting",
@@ -121,7 +121,7 @@
         "time": 0
       }
     },
-    "value": 200
+    "value": 200.345
   },
   "phaseOff": {
     "action": "setting",
@@ -161,7 +161,7 @@
         "time": 0
       }
     },
-    "value": 0.25
+    "value": 0.016
   },
   "rfAmpLow": {
     "action": "setting",
@@ -181,6 +181,26 @@
         "time": 0
       }
     },
-    "value": -0.01
+    "value": -0.0075
+  },
+  "permit": {
+    "action": "reading",
+    "type": "scalar",
+    "value": 0,
+    "unit": "",
+    "alarm": {
+      "value": 3,
+      "limits": {
+        "lolo": 0,
+        "low": 0,
+        "high": 2,
+        "hihi": 2
+      },
+      "notify": {
+        "name": "",
+        "number": "",
+        "time": 0
+      }
+    }
   }
 }
