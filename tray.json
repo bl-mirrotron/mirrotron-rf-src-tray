@@ -6,7 +6,7 @@
   "watchdog": {
     "action": "reading",
     "type": "scalar",
-    "value": 30,
+    "value": 11504,
     "unit": "",
     "alarm": {
       "value": 0,
@@ -61,7 +61,7 @@
         "time": 0
       }
     },
-    "value": 0
+    "value": 1
   },
   "fbFiltShift": {
     "action": "setting",
@@ -88,7 +88,7 @@
     "type": "scalar",
     "unit": "",
     "alarm": {
-      "value": 4,
+      "value": 0,
       "limits": {
         "lolo": 10,
         "low": 11,
@@ -121,7 +121,7 @@
         "time": 0
       }
     },
-    "value": 200.345
+    "value": 200.342
   },
   "phaseOff": {
     "action": "setting",
@@ -146,14 +146,14 @@
   "rfAmpHi": {
     "action": "setting",
     "type": "scalar",
-    "unit": "unit",
+    "unit": "kW",
     "alarm": {
-      "value": 0,
+      "value": 2,
       "limits": {
-        "lolo": -0.4,
-        "low": -0.3,
-        "high": 0.3,
-        "hihi": 0.4
+        "lolo": 90,
+        "low": 95,
+        "high": 205,
+        "hihi": 210
       },
       "notify": {
         "name": "",
@@ -161,7 +161,7 @@
         "time": 0
       }
     },
-    "value": 0.016
+    "value": 110.0
   },
   "rfAmpLow": {
     "action": "setting",
@@ -186,10 +186,10 @@
   "permit": {
     "action": "reading",
     "type": "scalar",
-    "value": 0,
+    "value": 1,
     "unit": "",
     "alarm": {
-      "value": 3,
+      "value": 0,
       "limits": {
         "lolo": 0,
         "low": 0,
