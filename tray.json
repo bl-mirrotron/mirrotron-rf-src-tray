@@ -6,7 +6,7 @@
   "watchdog": {
     "action": "reading",
     "type": "scalar",
-    "value": 11504,
+    "value": 27544,
     "unit": "",
     "alarm": {
       "value": 0,
@@ -110,10 +110,10 @@
     "alarm": {
       "value": 0,
       "limits": {
-        "lolo": 180,
-        "low": 190,
-        "high": 210,
-        "hihi": 220
+        "lolo": 200.322,
+        "low": 200.332,
+        "high": 200.352,
+        "hihi": 200.362
       },
       "notify": {
         "name": "",
@@ -148,7 +148,7 @@
     "type": "scalar",
     "unit": "kW",
     "alarm": {
-      "value": 2,
+      "value": 0,
       "limits": {
         "lolo": 90,
         "low": 95,
@@ -161,19 +161,19 @@
         "time": 0
       }
     },
-    "value": 110.0
+    "value": 110
   },
   "rfAmpLow": {
     "action": "setting",
     "type": "scalar",
-    "unit": "unit",
+    "unit": "V",
     "alarm": {
       "value": 0,
       "limits": {
-        "lolo": -0.4,
-        "low": -0.3,
-        "high": 0.3,
-        "hihi": 0.4
+        "lolo": -0.0095,
+        "low": -0.0085,
+        "high": -0.0065,
+        "hihi": -0.0055
       },
       "notify": {
         "name": "",
