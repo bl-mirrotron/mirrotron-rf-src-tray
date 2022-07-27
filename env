@@ -1,0 +1,7 @@
+MQTTSUBSCRIBE=mirrotron/rf-src/01/setting/#
+MQTTCLIENTID=mirrotron-rf-src-01
+MQTTSERVERIP=xxx
+MQTTUSERNAME=yyy
+MQTTPASSWORD=zzz
+PM2NAME=rf-src-01
+NODEREDCONFIGSECRET=a-secret-key
