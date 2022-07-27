@@ -6,7 +6,7 @@
   "watchdog": {
     "action": "reading",
     "type": "scalar",
-    "value": 27544,
+    "value": 18197,
     "unit": "",
     "alarm": {
       "value": 0,
@@ -61,7 +61,7 @@
         "time": 0
       }
     },
-    "value": 1
+    "value": 0
   },
   "fbFiltShift": {
     "action": "setting",
