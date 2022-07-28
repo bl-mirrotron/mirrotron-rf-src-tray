@@ -8,7 +8,7 @@ The clock of the Stemlab 125-14 is 125MHz so a 200 MHz signal cannot be generate
 
 The tray code uses the Blinky-lite Canvas interface in which all settings are mapped to a GPIO memory address on the Red Pitaya. The tray code is shown in [Figure 4](#figure-4). 
 
-The RF Frequency source is the main actuator for the Machine Permit system. When the Machine Permit system detects a fault, the tray code shown in [Figure 5](#figure-5) resets the Direct Digtal Synthesizer which disables any RF output from the RF Frequency source.
+The RF Frequency source is the main actuator for the [Machine Permit system](https://bl-mirrotron.github.io/#machine-protection-system). When the Machine Permit system detects a fault, the tray code shown in [Figure 5](#figure-5) resets the Direct Digtal Synthesizer which disables any RF output from the RF Frequency source.
 
 ##### Figure 1 #####
 *RF Frequency Source Block Diagram*<br>
