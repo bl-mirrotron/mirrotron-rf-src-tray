@@ -6,7 +6,7 @@
   "watchdog": {
     "action": "reading",
     "type": "scalar",
-    "value": 25596,
+    "value": 7702,
     "unit": "",
     "alarm": {
       "value": 0,
@@ -150,8 +150,8 @@
     "alarm": {
       "value": 0,
       "limits": {
-        "lolo": 90,
-        "low": 95,
+        "lolo": 10,
+        "low": 10,
         "high": 205,
         "hihi": 210
       },
@@ -161,7 +161,7 @@
         "time": 0
       }
     },
-    "value": 110
+    "value": 160
   },
   "rfAmpLow": {
     "action": "setting",
